@@ -13,16 +13,16 @@ def annoying_input_int(message =''):
     return answer
 
 
-def game_tournament(hero, dragon_list, troll_list):
+def game_tournament(hero, dragon_list):
     for dragon in dragon_list:
-        print('Вышел', dragon._color, 'дракон!')
+        print('Вышел', dragon._color, 'дракон или троль!')
         while dragon.is_alive() and hero.is_alive():
             print('Вопрос:', dragon.question())
             answer = annoying_input_int('Ответ:')
 
             if dragon.check_answer(answer):
                 hero.attack(dragon)
-                print('Верно! \n** дракон кричит от боли **')
+                print('Верно! \n** дракон или троль кричит от боли **')
             else:
                 dragon.attack(hero)
                 print('Ошибка! \n** вам нанесён удар... **')
@@ -30,20 +30,6 @@ def game_tournament(hero, dragon_list, troll_list):
             break
         print('Дракон', dragon._color, 'повержен!\n')
 
-    for troll in troll_list:
-        while troll.is_alive() and hero.is_alive():
-            print('Вопрос:', troll.question())
-            answer = annoying_input_int('Ответ:')
-
-            if troll.check_answer(answer):
-                hero.attack(troll)
-                print('Верно! \n** троль кричит от боли **')
-            else:
-                troll.attack(hero)
-                print('Ошибка! \n** вам нанесён удар... **')
-        if troll.is_alive():
-            break
-        print('Дракон', troll._color, 'повержен!\n')
 
     if hero.is_alive():
         print('Поздравляем! Вы победили!')
@@ -58,10 +44,10 @@ def start_game():
         print('Представьтесь, пожалуйста: ', end = '')
         hero = Hero(input())
 
-        dragon_number = 3
+        dragon_number = 5
         dragon_list = generate_dragon_list(dragon_number)
-        assert(len(dragon_list) == 3)
-        print('У Вас на пути', dragon_number, 'драконов!')
+        assert(len(dragon_list) == 5)
+        print('У Вас на пути', dragon_number, 'драконов и тролей!')
         game_tournament(hero, dragon_list)
 
     except EOFError:
