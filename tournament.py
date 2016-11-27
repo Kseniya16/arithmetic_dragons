@@ -7,7 +7,7 @@ def annoying_input_int(message =''):
     answer = None
     while answer == None:
         try:
-            answer = int(input(message))
+            answer = input(message).strip()
         except ValueError:
             print('Вы ввели недопустимые символы')
     return answer
@@ -19,6 +19,7 @@ def game_tournament(hero, dragon_list):
         while dragon.is_alive() and hero.is_alive():
             print('Вопрос:', dragon.question())
             answer = annoying_input_int('Ответ:')
+            hero.its_experience()
 
             if dragon.check_answer(answer):
                 hero.attack(dragon)
@@ -41,12 +42,14 @@ def start_game():
 
     try:
         print('Добро пожаловать в арифметико-ролевую игру с драконами!')
-        print('Представьтесь, пожалуйста: ', end = '')
+        print("Каждый правильный ответ 100 поинтов опыта")
+        print('Представьтесь, пожалуйста: ', end='')
         hero = Hero(input())
 
-        dragon_number = 5
+
+        dragon_number = 1
         dragon_list = generate_dragon_list(dragon_number)
-        assert(len(dragon_list) == 5)
+        assert(len(dragon_list) == 1)
         print('У Вас на пути', dragon_number, 'драконов и тролей!')
         game_tournament(hero, dragon_list)
 
