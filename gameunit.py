@@ -13,6 +13,10 @@ class Attacker:
     def is_alive(self):
         return self._health > 0
 
-    def its_experience(self):
-        self._experience += self._attack
+    def its_experience_plus(self):
+        self._experience += 100
+        return self._experience
+
+    def its_experience_minus(self):
+        self._experience -= 50
         return self._experience

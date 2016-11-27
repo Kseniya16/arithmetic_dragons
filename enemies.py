@@ -29,7 +29,7 @@ class Dragon(Enemy):
 class GreenDragon(Dragon):
     def __init__(self):
         self._health = 100
-        self._attack = 10
+        self._attack = 50
         self._color = 'зелёный'
 
     def question(self):
@@ -42,7 +42,7 @@ class GreenDragon(Dragon):
 class RedDragon(Dragon):
     def __init__(self):
         self._health = 100
-        self._attack = 10
+        self._attack = 50
         self._color = 'красный'
 
     def question(self):
@@ -55,7 +55,7 @@ class RedDragon(Dragon):
 class BlackDragon(Dragon):
     def __init__(self):
         self._health = 100
-        self._attack = 10
+        self._attack = 50
         self._color = 'черный'
 
     def question(self):
@@ -68,41 +68,41 @@ class BlackDragon(Dragon):
 class BlueTroll(Dragon):
     def __init__(self):
         self._health = 100
-        self._attack = 10
+        self._attack = 50
         self._color = 'Blue'
 
     def question(self):
         x = randint(1,2)
         self.__quest ='Угадай число от 1 до 2'
-        self.set_answer(x)
+        self.set_answer(str(x))
         return self.__quest
 
 class YellowTroll(Dragon):
     def __init__(self):
-        self._health = 100
-        self._attack = 10
+        self._health = 200
+        self._attack = 50
         self._color = 'Yellow'
 
     def question(self):
-        x = randint(3,20)
-        self.__quest ='Number '+ str(x) + ' is simple? Yes=1 or No=0'
-        for i in range(2,x+1):
-            if x%i == 0:
-                self.set_answer(1)
-            else:
-                self.set_answer(0)
+        x = randint(3,50)
+        self.__quest ='Number '+ str(x) + ' is simple? Yes or No'
+        self.set_answer(str('Yes'))
+        for i in range(2,x):
+            if x % i == 0:
+                self.set_answer(str('No'))
+
 
         return self.__quest
 
 class OrangeTroll(Dragon):
     def __init__(self):
         self._health = 100
-        self._attack = 10
+        self._attack = 50
         self._color = 'Orange'
 
     def question(self):
-        x = randint(2, 2)
-        self.__quest = 'Введите множители числа ' + str(x) + " в возрастающем порядке через запятую"
+        x = randint(8,80)
+        self.__quest = 'Введите множители числа ' + str(x) + " в возрастающем порядке через запятую (без 1):"
         answer_list = []
         i = 2
         M = int(x)
@@ -112,13 +112,12 @@ class OrangeTroll(Dragon):
                 M = M / i
             else:
                 i += 1
-        #print(self.set_answer)
         tmp = []
         for i in answer_list:
             tmp.append(str(i))
         answer = ",".join(tmp)
         self.set_answer(answer)
-        print(answer)
+        #print(answer)
         return self.__quest
 
 
